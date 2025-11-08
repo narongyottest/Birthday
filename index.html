@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th" class="kuromi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>สุขสันต์วันเกิด!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- พื้นหลังเอฟเฟกต์ -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="sparkles" aria-hidden="true"></div>
+
+  <!-- ลูกโป่งลอย -->
+  <div class="balloons" aria-hidden="true">
+    <span class="balloon b1"></span>
+    <span class="balloon b2"></span>
+    <span class="balloon b3"></span>
+    <span class="balloon b4"></span>
+  </div>
+
+  <!-- การ์ด -->
+  <main class="birthday-card" role="main" aria-label="การ์ดอวยพรวันเกิด">
+    <h1 class="main-title" aria-label="คำอวยพรหลัก">🎀Happy Birthday🎀</h1>
+
+    <p class="recipient-name" aria-label="ชื่อผู้รับ">🖤ปีศาจหนวด🖤</p>
+
+    <figure class="photo-wrap">
+      <img src="C:\Users\hp\Desktop\ขาย Code\ไอ้หนวด\ไอ้หนวดV3\Image\1.jpg" alt="รูปผู้รับ/รูปความทรงจำวันเกิด" class="birthday-photo" />
+      <figcaption>วันนี้เป็นของเธอ ✨</figcaption>
+    </figure>
+
+    <section class="message-box" aria-label="ข้อความอวยพร">
+      <p>สุขสันต์วันเกิดค้าบบ!🎉 ขอให้วันนี้เป็นวันที่ดีที่สุดในชีวิต มีความสุขมาก ๆ สุขภาพแข็งแรง คิดอะไรก็สมหวังทุกอย่าง🎉🎂🎁</p>
+    </section>
+
+    <p class="sender-name">จาก ไอ่ไก่</p>
+
+    <!-- วิดีโออวยพร (แทนที่ audio เดิม) -->
+    <video id="video" class="birthday-video" controls preload="metadata" playsinline>
+      <!-- เปลี่ยนพาธเป็นแบบ relative จะชัวร์กว่า เช่น VDO/1.mp4 -->
+      <source src="VDO/1.mp4" type="video/mp4" />
+      เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+    </video>
+  </main>
+
+  <!-- เทมเพลตคอนเฟ็ตติ -->
+  <template id="confettiPiece">
+    <span class="confetti"></span>
+  </template>
+
+  <script>
+    // ยิงคอนเฟ็ตติอัตโนมัติครั้งเดียวตอนโหลดหน้า
+    const confettiTemplate = document.getElementById('confettiPiece');
+    function burstConfetti() {
+      const count = 120;
+      for (let i = 0; i < count; i++) {
+        const piece = confettiTemplate.content.firstElementChild.cloneNode(true);
+        const size = Math.random() * 8 + 4;      // 4 - 12 px
+        const startX = Math.random() * 100;      // vw
+        const rot = Math.random() * 360;
+        piece.style.setProperty('--x', startX + 'vw');
+        piece.style.setProperty('--size', size + 'px');
+        piece.style.setProperty('--rot', rot + 'deg');
+        piece.style.setProperty('--delay', Math.random() * 0.25 + 's');
+        document.body.appendChild(piece);
+        piece.addEventListener('animationend', () => piece.remove());
+      }
+    }
+    window.addEventListener('DOMContentLoaded', burstConfetti);
+  </script>
+</body>
+</html>
